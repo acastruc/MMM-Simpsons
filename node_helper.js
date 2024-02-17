@@ -1,5 +1,6 @@
-var request = require('request');
+const fetch = require("node-fetch");
 var NodeHelper = require("node_helper");
+var cheerio = require("cheerio");
 
 module.exports = NodeHelper.create({
 	
@@ -16,10 +17,25 @@ module.exports = NodeHelper.create({
 			var url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 			
 			console.log('-> SimpsonsQuote request');
-			request(url, function (error, response, body) {
-				console.log('SimpsonsQuote -> ' + body);
-				self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
-			});
+
+			fetch(url)
+				.then(response => response.text())
+				.then(body => {
+					console.log("body=" + body)
+					var $ = cheerio.load(body);
+					console.log("$=" + $)
+					//var src = $(".img-comic").attr('src');
+					//console.log('Simpsons Quote img -> ' + src);
+					self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
+				})
+				.catch((error) => {
+					console.log('Simpsons Quote Fetch Error -> ' + error);
+				});
+			return;
+			// request(url, function (error, response, body) {
+			// 	console.log('SimpsonsQuote -> ' + body);
+			// 	self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
+			// });
 			return;
 		}
 	},
