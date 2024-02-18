@@ -9,16 +9,16 @@ module.exports = NodeHelper.create({
 	
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
-		Log.info("SimpsonsQuote -> Notification: " + notification + " Payload: " + payload);
+		Log.info("SimpsonsQuote -> Notification: " + notification + " Payload: " + JSON.stringify(payload));
 		
 		if(notification === "GET_SIMPSONSQUOTE") {
 			
 			var url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 			
-			Log.info('-> SimpsonsQuote request');
+			Log.info('-> SimpsonsQuote requested');
 			fetch(url).then((response) => response.json())
   				  .then(data => {
-      					Log.info("Simpsons Quote : " + data)
+      					Log.info("Simpsons Quote : " + JSON.stringify(data))
 					//var src = $(".img-comic").attr('src');
 					//Log.info('Simpsons Quote img -> ' + src);
 					//self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
