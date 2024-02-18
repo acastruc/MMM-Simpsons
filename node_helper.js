@@ -16,7 +16,7 @@ module.exports = NodeHelper.create({
 			var url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 			
 			Log.info('-> SimpsonsQuote request');
-			fetch(uri).then((response) => response.json())
+			fetch(url).then((response) => response.json())
   				  .then(data => {
       					Log.info("Simpsons Quote : " + data)
 					//var src = $(".img-comic").attr('src');
