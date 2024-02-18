@@ -16,17 +16,19 @@ module.exports = NodeHelper.create({
 			var url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 			
 			Log.info('-> SimpsonsQuote requested');
-			//fetch(url).then((response) => response.json())
-  			//	  .then(data => {
-      			fetch(url).then(data => {
-				        Log.info("Simpsons Quote : " + JSON.stringify(data))
-					//var src = $(".img-comic").attr('src');
-					//Log.info('Simpsons Quote img -> ' + src);
-					self.sendSocketNotification("SIMPSONSQUOTE", { data : data });
+			fetch(url).then((response) => response.json())
+                		  .then(respdata => {
+				       if (Array.isArray(respdata) && respdata.length > 0){
+                            		   Log.info("The quote is " + JSON.stringify(data[0]));
+					   self.sendSocketNotification("SIMPSONSQUOTE", { data : respdata });
+				       } else {
+                            		   Log.error("Unexpected data was returned");
+                        	       }                        	       
 				  })
 				  .catch((error) => {
-					Log.error('Simpsons Quote Fetch Error -> ' + error);
-				  });
+					console.error('Simpsons Quote Fetch Error -> ' + error);
+				  });			
+			
 			//fetch(url)
 			//	.then(response => response.text())
 			//	.then(body => {
