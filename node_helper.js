@@ -4,27 +4,27 @@ const Log = require("logger");
 module.exports = NodeHelper.create({
 	
 	start: function() {
-		Log.Info("Starting node helper: " + this.name);
+		Log.info("Starting node helper: " + this.name);
 	},
 	
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
-		Log.Info("SimpsonsQuote -> Notification: " + notification + " Payload: " + payload);
+		Log.info("SimpsonsQuote -> Notification: " + notification + " Payload: " + payload);
 		
 		if(notification === "GET_SIMPSONSQUOTE") {
 			
 			var url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 			
-			Log.Info('-> SimpsonsQuote request');
+			Log.info('-> SimpsonsQuote request');
 			fetch(uri).then((response) => response.json())
   				  .then(data => {
-      					Log.Info("Simpsons Quote : " + data)
+      					Log.info("Simpsons Quote : " + data)
 					//var src = $(".img-comic").attr('src');
-					//console.log('Simpsons Quote img -> ' + src);
+					//Log.info('Simpsons Quote img -> ' + src);
 					//self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
 				  })
 				  .catch((error) => {
-					Log.Error('Simpsons Quote Fetch Error -> ' + error);
+					Log.error('Simpsons Quote Fetch Error -> ' + error);
 				  });
 			//fetch(url)
 			//	.then(response => response.text())
