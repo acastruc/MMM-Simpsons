@@ -23,9 +23,9 @@ module.exports = NodeHelper.create({
 					//console.log('Simpsons Quote img -> ' + src);
 					//self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
 				  })
-				  .catch(error) {
-				      Log.Error("Failed to fetch quote:" + error);
-				  }
+				  .catch((error) => {
+					Log.Error('Simpsons Quote Fetch Error -> ' + error);
+				  });
 			//fetch(url)
 			//	.then(response => response.text())
 			//	.then(body => {
