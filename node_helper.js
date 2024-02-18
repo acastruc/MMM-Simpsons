@@ -19,8 +19,8 @@ module.exports = NodeHelper.create({
 			fetch(url).then((response) => response.json())
                 		  .then(respdata => {
 				       if (Array.isArray(respdata) && respdata.length > 0){
-                            		   Log.info("The quote is " + JSON.stringify(data[0]));
-					   self.sendSocketNotification("SIMPSONSQUOTE", { data : respdata });
+                            		   Log.info("The quote is " + JSON.stringify(respdata[0]));
+					   self.sendSocketNotification("SIMPSONSQUOTE", { data : respdata[0] });
 				       } else {
                             		   Log.error("Unexpected data was returned");
                         	       }                        	       
