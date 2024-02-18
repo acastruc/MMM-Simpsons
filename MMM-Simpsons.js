@@ -40,8 +40,8 @@ Module.register("MMM-Simpsons", {
 
     socketNotificationReceived: function(notification, body) {
         if (notification === "SIMPSONSQUOTE") {
-            Log.info('Simpsons body.data= ' + body.data);
-            let quotes = JSON.parse(body.data);
+            //Log.info('Simpsons body.data= ' + body.data);
+            let quotes = body.data;
             if (quotes && quotes.length > 0) {
                 this.dailyComic = quotes[0];
                 //let i = quotes[0].image;
