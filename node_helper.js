@@ -21,7 +21,7 @@ module.exports = NodeHelper.create({
       					Log.info("Simpsons Quote : " + JSON.stringify(data))
 					//var src = $(".img-comic").attr('src');
 					//Log.info('Simpsons Quote img -> ' + src);
-					//self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
+					self.sendSocketNotification("SIMPSONSQUOTE", { data : body });
 				  })
 				  .catch((error) => {
 					Log.error('Simpsons Quote Fetch Error -> ' + error);
