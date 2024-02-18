@@ -16,9 +16,10 @@ module.exports = NodeHelper.create({
 			var url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 			
 			Log.info('-> SimpsonsQuote requested');
-			fetch(url).then((response) => response.json())
-  				  .then(data => {
-      					Log.info("Simpsons Quote : " + JSON.stringify(data))
+			//fetch(url).then((response) => response.json())
+  			//	  .then(data => {
+      			fetch(url).then(data => {
+				        Log.info("Simpsons Quote : " + JSON.stringify(data))
 					//var src = $(".img-comic").attr('src');
 					//Log.info('Simpsons Quote img -> ' + src);
 					self.sendSocketNotification("SIMPSONSQUOTE", { data : data });
